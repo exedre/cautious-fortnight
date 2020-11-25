@@ -1,0 +1,7 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: head
+# key: #!
+# binding: direct-keybinding
+# --
+#! python
+# -*- coding: utf-8 -*-

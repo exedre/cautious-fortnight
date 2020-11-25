@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: a=
+# key: a=
+# binding: direct-keybinding
+# --
+atto=setup()
