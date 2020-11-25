@@ -1,0 +1,8 @@
+(setq mac-command-modifier 'meta)
+; (setq mac-option-modifier 'super)
+(set-terminal-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+(prefer-coding-system 'utf-8)
+(setq mac-option-key-is-meta nil)
+(setq mac-command-key-is-meta t)
+(setq mac-option-modifier nil)
