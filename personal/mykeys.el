@@ -1,4 +1,5 @@
 (setq win-cycle-dir 1)
+
 (defun select-last-nbor-window ()
   "Switch to the previous window"
   (setq win-cycle-dir (* win-cycle-dir -1))
@@ -18,6 +19,10 @@
   (select-window (previous-window)))
 
 
+(fset 'my/rewrap-para
+   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([5 backspace 44 32 4 escape 108] 0 "%d")) arg)))
+
+(global-set-key (kbd "M-ò") 'my/rewrap-para)
 
 (global-set-key (kbd "M-<up>") 'select-next-window)
 (global-set-key (kbd "<XF86Forward>") 'select-next-window)
