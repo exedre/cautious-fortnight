@@ -399,15 +399,16 @@ If there is a column summary value for the property that has recently be calcula
   (let* (
          (nodes (ht->alist org-emind-nodes))
          (edges (ht->alist org-emind-edges))
+         (title (org-collect-keywords '("TITLE")))
         )
-    (concat "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
+    (concat (format "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
 <cmap xmlns:dcterms=\"http://purl.org/dc/terms/\" xmlns=\"http://cmap.ihmc.us/xml/cmap/\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:vcard=\"http://www.w3.org/2001/vcard-rdf/3.0#\">
     <res-meta>
-        <dc:title>Test</dc:title>
+        <dc:title>%s</dc:title>
          <dc:format>x-cmap/x-storable</dc:format>
  </res-meta>
 <map>
-\n"
+\n" title)
             "<!-- nodes -->\n<concept-list>\n"
             (mapconcat #'(lambda (x) (format "<concept id=\"%s\" label=\"%s\" />"
                                              (number-to-string (org-emind-cxl-node-id x))
