@@ -414,17 +414,37 @@ If there is a column summary value for the property that has recently be calcula
             "<!-- nodes -->\n<concept-list>\n"
             (mapconcat #'(lambda (x) (format "<concept id=\"%s\" label=\"%s\" />"
                                              (number-to-string (org-emind-cxl-node-id x))
-                                             (org-emind-cxl-node-name x)))
+                                             (replace-regexp-in-string
+                                              ">" "&gt;"
+                                              (replace-regexp-in-string
+                                               "<" "&lt;"
+                                               (replace-regexp-in-string
+                                                " *§ *" "&#xa;"
+                                                (replace-regexp-in-string
+                                                 "\"" "&quot;"
+                                                 (org-emind-cxl-node-name x)))))))
              nodes "\n")
             "\n</concept-list>\n"
             "<!-- EDGES -->\n<connection-list>\n"
-            (mapconcat #'(lambda (x) (format "<connection from-id='%s' to-id='%s'/>"
-                                             (number-to-string (org-emind-cxl-node-id (nth 0 (nth 0 x))))
-                                             (number-to-string (org-emind-cxl-node-id (nth 1 (nth 0 x))))))
+            (mapconcat #'(lambda (x)
+                           (let (
+                                 (e1 (number-to-string (org-emind-cxl-node-id (nth 0 (nth 0 x)))))
+                                 (e2 (number-to-string (org-emind-cxl-node-id (nth 1 (nth 0 x))))))
+                             (format "<connection id='C%sE%s' from-id='%s' to-id='%s'/>"
+                                     e1 e2 e1 e2)))
                        edges "\n")
             "\n</connection-list>\n"
-            "        <concept-appearance-list>
-        </concept-appearance-list>
+            "<!-- EDGES -->\n<connection-appearance-list>\n"
+            (mapconcat #'(lambda (x)
+                           (let (
+                                 (e1 (number-to-string (org-emind-cxl-node-id (nth 0 (nth 0 x)))))
+                                 (e2 (number-to-string (org-emind-cxl-node-id (nth 1 (nth 0 x)))))
+                                 )
+
+                             (format "<connection-appearance id='C%sE%s' from-pos='right' to-pos='left'/>" e1 e2)))
+                       edges "\n")
+            "\n</connection-appearance-list>\n"
+            "
         <linking-phrase-appearance-list>
         </linking-phrase-appearance-list>
         <connection-appearance-list>

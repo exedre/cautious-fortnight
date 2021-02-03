@@ -7,40 +7,69 @@
 (use-package bongo
   :ensure t :defer t
   :init (progn
-		  (defun my/bongo-play-first ()
-			(interactive)
-			(with-current-buffer (bongo-buffer)
-			  (save-excursion
-				(beginning-of-buffer)
-				(next-line 14)
-				(bongo-play))))
 
-		  (defun my/bongo-play-last ()
-			(interactive)
-			(with-current-buffer (bongo-buffer)
-			  (save-excursion
-				(end-of-buffer)
-				(previous-line)
-				(bongo-play))))
+          (defun my/bongo-pause/resume ()
+            (interactive)
+            (bongo-pause/resume)
+            (bongo-show)
+            )
 
-		  (defun my/bongo-kill-current ()
-			(interactive)
-			(with-current-buffer (bongo-buffer)
-			  (save-excursion
-				(bongo-stop)
-				(bongo-recenter)
-				(bongo-kill)
-				(if (= 0 (my/difference-line-point-end-buffer))
-					(previous-line))
-				(bongo-play))))
+          (defun my/bongo-vlc-player-faster ()
+            (interactive)
+            (with-bongo-playlist-buffer
+              (if bongo-player
+                  (if (bongo-player-interactive-p bongo-player)
+                      (process-send-string (bongo-player-process bongo-player) "faster\n")
+                    )
+                (bongo-player-pause/resume bongo-player)
+                (error "No active player")))
+            )
 
-		  (setq bongo-default-directory "~/Music/"
-				bongo-confirm-flush-playlist nil
-				bongo-insert-whole-directory-trees nil))
+
+          (defun my/bongo-vlc-player-slower ()
+            (interactive)
+            (with-bongo-playlist-buffer
+              (if bongo-player
+                  (if (bongo-player-interactive-p bongo-player)
+                      (process-send-string (bongo-player-process bongo-player) "slower\n")
+                    )
+                (bongo-player-pause/resume bongo-player)
+                (error "No active player"))))
+
+	  (defun my/bongo-play-first ()
+            (interactive)
+	    (with-current-buffer (bongo-buffer)
+	      (save-excursion
+		(beginning-of-buffer)
+		(next-line 14)
+		(bongo-play))))
+
+	  (defun my/bongo-play-last ()
+	    (interactive)
+	    (with-current-buffer (bongo-buffer)
+	      (save-excursion
+		(end-of-buffer)
+		(previous-line)
+		(bongo-play))))
+
+	  (defun my/bongo-kill-current ()
+	    (interactive)
+	    (with-current-buffer (bongo-buffer)
+	      (save-excursion
+		(bongo-stop)
+		(bongo-recenter)
+		(bongo-kill)
+		(if (= 0 (my/difference-line-point-end-buffer))
+		    (previous-line))
+		(bongo-play))))
+
+	  (setq bongo-default-directory "~/Music/"
+		bongo-confirm-flush-playlist nil
+		bongo-insert-whole-directory-trees nil))
   :config(progn
-		  (bind-key "." 'my/youtube-dl bongo-mode-map)
-		  (bind-key "C-c C-c" 'my/bongo-play-first bongo-mode-map)
-		  (bind-key "C-c C-t" 'my/bongo-play-last bongo-mode-map)))
+	   (bind-key "." 'my/youtube-dl bongo-mode-map)
+	   (bind-key "C-c C-c" 'my/bongo-play-first bongo-mode-map)
+	   (bind-key "C-c C-t" 'my/bongo-play-last bongo-mode-map)))
 (defhydra hydra-bongo (:color blue :hint nil)
   "
        ^_c_^             ^_,_^         _p_: pause/resume   _i_: insert
@@ -75,3 +104,32 @@
 ;; (global-set-key (kbd "<f10>") 'bongo-seek-forward-10)
 ;; (global-set-key (kbd "<f11>") 'bongo-seek-to)
 ;; (global-set-key (kbd "<C-f7>") 'bongo-start/stop)
+
+
+(defun my/bongo-vlc-player-get-info ()
+  (interactive)
+  (with-bongo-playlist-buffer
+    (if bongo-player
+        (if (bongo-player-interactive-p bongo-player)
+            (progn
+              (bongo-vlc-player-tick bongo-player)
+              (process-send-string (bongo-player-process bongo-player) "get_time\n")
+              (let* (( secs (bongo-player-get bongo-player 'total-time))
+                     ( mins (/ secs 60))
+                     ( secs (- secs (* mins 60)))
+                     )
+                (message (format "%02d:%02d" mins secs))
+                )
+              )
+          (bongo-player-pause/resume bongo-player))
+      (error "No active player")))
+  )
+
+
+(defun my/bongo-vlc-player-rate (num)
+  (interactive "P")
+  (with-bongo-playlist-buffer
+    (if bongo-player
+        (if (bongo-player-interactive-p bongo-player)
+            (process-send-string (bongo-player-process bongo-player) (format "rate %f\n" (/ (float num) 100))))
+      (error "No active player"))))

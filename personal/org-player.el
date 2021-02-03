@@ -211,20 +211,20 @@ Album: %s / %s
                 ((bongo-paused-p) "(paused)")
                 ((bongo-playing-p) "(playing)")
                 (t "(stopped)"))
-               )))))
+               ))))
 
 
-(defun org-player-pause/resume ()
-  (interactive)
-  (destructuring-bind (title album artist elapsed total)
-      (org-player-get-track-info)
-    (when title
-      (message "%02d:%02d/%02d:%02d %s %s (%s / %s)"
-               (floor elapsed 60) (mod elapsed 60)
-               (floor total 60) (mod total 60)
-               (if (bongo-paused-p) "Unpaused:" "Paused:")
-               title album artist)))
-    (bongo-pause/resume))
+  (defun org-player-pause/resume ()
+    (interactive)
+    (destructuring-bind (title album artist elapsed total)
+        (org-player-get-track-info)
+      (when title
+        (message "%02d:%02d/%02d:%02d %s %s (%s / %s)"
+                 (floor elapsed 60) (mod elapsed 60)
+                 (floor total 60) (mod total 60)
+                 (if (bongo-paused-p) "Unpaused:" "Paused:")
+                 title album artist)))
+    (bongo-pause/resume)))
 
 
 (defun org-player-start/stop (&optional force starting-pos)
@@ -256,18 +256,19 @@ Album: %s / %s
 ;; (global-set-key (kbd "<C-f7>") 'bongo-start/stop)
 
 ;; Numpad Ctrl-0: pause/resume
-(define-key org-mode-map (kbd "<f9>") 'org-player-pause/resume)
+(define-key org-mode-map (kbd "<f9>") 'my/bongo-pause/resume)
 ;; Numpad Ctrl-.: stop current track, or restart from beginning if stopped
 (define-key org-mode-map (kbd "<f7>") 'org-player-start/stop)
 (define-key org-mode-map (kbd "<C-f7>") 'bongo-seek-to)
 ;; Numpad Ctrl-PgUp, Ctrl-PgDn: raise/lower volume
-(define-key org-mode-map (kbd "<f12>") 'volume-raise)
-(define-key org-mode-map (kbd "<f13>") 'volume-lower)
+(define-key org-mode-map (kbd "<f6>") 'my/bongo-vlc-player-faster)
+(define-key org-mode-map (kbd "<C-f6>") 'my/bongo-vlc-player-slower)
 ;; Numpad Ctrl-left, Ctrl-right: skip back/forward 10 seconds
 (define-key org-mode-map (kbd "<f8>") 'bongo-seek-backward-10)
 (define-key org-mode-map (kbd "<f10>") 'bongo-seek-forward-10)
 ;; Ctrl-/: show track info
-(define-key org-mode-map (kbd "<f6>") 'org-player-print-track-info)
+;;(define-key org-mode-map (kbd "<f6>") 'org-player-print-track-info)
+
 
 
 ;; ;; Numpad Ctrl-0: pause/resume

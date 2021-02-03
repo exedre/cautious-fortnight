@@ -142,6 +142,20 @@
   "Convert org-mode tree into a graphviz directed graph"
   :group 'org)
 
+(defun cxl-load (fname)
+  (interactive "f")
+  (let* ((xml-dom-tree (with-temp-buffer
+                         (insert-file-contents fname)
+                         (libxml-parse-xml-region (point-min) (point-max))))
+         ;; Get first level children with "img" tag.
+         (concept-nodes (dom-by-tag xml-dom-tree 'concept)))
+    (dom-pp xml-dom-tree)
+    ))
+
+(defun cxl-save (fname)
+  )
+
+(defun cxl-add-node ())
 
 (provide 'cxl)
 ;;; cxl.el ends here

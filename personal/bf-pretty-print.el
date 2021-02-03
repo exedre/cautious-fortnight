@@ -13,3 +13,13 @@ by using nxml's indentation rules."
     (indent-region begin end))
   (message "Ah, much better!"))
 ;;
+
+(defun xml-parse-buffer ()
+  (interactive)
+  (goto-char (point-min))
+  (xml-parse-string))
+
+(defun decode-entities (html)
+  (with-temp-buffer
+    (save-excursion (insert html))
+    (xml-parse-string)))
