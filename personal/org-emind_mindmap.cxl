@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cmap xmlns:dcterms="http://purl.org/dc/terms/" xmlns="http://cmap.ihmc.us/xml/cmap/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+    <res-meta>
+        <dc:title>nil</dc:title>
+         <dc:format>x-cmap/x-storable</dc:format>
+ </res-meta>
+<map>
+
+<!-- nodes -->
+<concept-list>
+<concept id="106" label="(provide 'org-emind)" />
+<concept id="104" label="(defun org-emind-export-message nil" />
+<concept id="102" label="(defmacro org-emind-make-edge-fn (name doc props &optional style color other)" />
+<concept id="98" label="(defmacro org-emind-make-node-fn (name doc props &optional shape color other)" />
+<concept id="94" label="(defun org-emind-write-current-tree (&optional promptp)" />
+<concept id="90" label="(defun org-emind-write-current-branch (&optional promptp)" />
+<concept id="86" label="(defun org-emind-write (&optional promptp)" />
+<concept id="82" label="(defun org-emind-default-filename (treenamep)" />
+<concept id="80" label="(defun org-emind-write-with-prompt nil" />
+<concept id="78" label=";;;###autoload" />
+<concept id="76" label="(defun org-emind-write-named (name &optional debug linksp)" />
+<concept id="74" label="(defun org-emind-update-message (filename process event)" />
+<concept id="72" label="(defun org-emind-make-cxl ()" />
+<concept id="70" label="(defun org-emind-data ()" />
+<concept id="68" label="(defun org-emind-write-tags (el)" />
+<concept id="66" label="(defun org-emind-first-headline (e)" />
+<concept id="64" label="(defun org-emind-narrow-to-heading-content (b)" />
+<concept id="62" label="(defun org-emind-get-property (prop el &optional inheritp)" />
+<concept id="60" label="(defun org-emind-cxl-node-name (el)" />
+<concept id="58" label="(defun org-emind-cxl-node-id (el)" />
+<concept id="56" label="(defun org-emind-edges-add (edge-a edge-b)" />
+<concept id="54" label="(defun swap (cell)" />
+<concept id="52" label="(defun org-emind-nodes-add (node)" />
+<concept id="50" label="(defvar org-emind-edges (make-hash-table :test 'equal)" />
+<concept id="48" label="(defvar org-emind-nodes (make-hash-table :test 'equal)" />
+<concept id="46" label="(defvar org-emind-edge-id 0" />
+<concept id="44" label="(defvar org-emind-node-id 0" />
+<concept id="42" label="(defcustom org-emind-include-images t" />
+<concept id="40" label="(defcustom org-emind-include-text t" />
+<concept id="38" label="(defcustom org-emind-tag-colors nil" />
+<concept id="36" label="(defcustom org-emind-reserved-colors nil" />
+<concept id="34" label="(defcustom org-emind-edge-format-default &quot;&quot;" />
+<concept id="32" label="(defcustom org-emind-edge-formats nil" />
+<concept id="30" label="(defcustom org-emind-node-formats nil" />
+<concept id="28" label="(defcustom org-emind-default-graph-attribs '((&quot;autosize&quot; . &quot;false&quot;)" />
+<concept id="26" label="(defcustom org-emind-default-edge-attribs nil" />
+<concept id="24" label="(defcustom org-emind-default-node-attribs '((&quot;shape&quot; . &quot;plaintext&quot;))" />
+<concept id="22" label="(defcustom org-emind-engine &quot;dot&quot;" />
+<concept id="20" label="(defcustom org-emind-display nil" />
+<concept id="18" label="(defcustom org-emind-dot-output '(&quot;pdf&quot; &quot;png&quot; &quot;jpeg&quot; &quot;svg&quot; &quot;eps&quot; &quot;gif&quot; &quot;tiff&quot;)" />
+<concept id="16" label="(defcustom org-emind-dot-command &quot;dot&quot;" />
+<concept id="14" label="(defcustom org-emind-unflatten-command &quot;unflatten -l3&quot;" />
+<concept id="12" label="(defgroup org-emind nil" />
+<concept id="10" label="(defconst org-emind-version &quot;0.4&quot;)" />
+<concept id="8" label="(require 'subr-x)" />
+<concept id="6" label="(require 'ht)" />
+<concept id="4" label="(require 'org)" />
+<concept id="2" label="(require 'dash)" />
+<concept id="1" label=";;; Code:" />
+</concept-list>
+<!-- EDGES -->
+<connection-list>
+<connection from-id='1' to-id='106'/>
+<connection from-id='1' to-id='104'/>
+<connection from-id='1' to-id='102'/>
+<connection from-id='1' to-id='98'/>
+<connection from-id='1' to-id='94'/>
+<connection from-id='1' to-id='90'/>
+<connection from-id='1' to-id='86'/>
+<connection from-id='1' to-id='82'/>
+<connection from-id='1' to-id='80'/>
+<connection from-id='1' to-id='78'/>
+<connection from-id='1' to-id='76'/>
+<connection from-id='1' to-id='74'/>
+<connection from-id='1' to-id='72'/>
+<connection from-id='1' to-id='70'/>
+<connection from-id='1' to-id='68'/>
+<connection from-id='1' to-id='66'/>
+<connection from-id='1' to-id='64'/>
+<connection from-id='1' to-id='62'/>
+<connection from-id='1' to-id='60'/>
+<connection from-id='1' to-id='58'/>
+<connection from-id='1' to-id='56'/>
+<connection from-id='1' to-id='54'/>
+<connection from-id='1' to-id='52'/>
+<connection from-id='1' to-id='50'/>
+<connection from-id='1' to-id='48'/>
+<connection from-id='1' to-id='46'/>
+<connection from-id='1' to-id='44'/>
+<connection from-id='1' to-id='42'/>
+<connection from-id='1' to-id='40'/>
+<connection from-id='1' to-id='38'/>
+<connection from-id='1' to-id='36'/>
+<connection from-id='1' to-id='34'/>
+<connection from-id='1' to-id='32'/>
+<connection from-id='1' to-id='30'/>
+<connection from-id='1' to-id='28'/>
+<connection from-id='1' to-id='26'/>
+<connection from-id='1' to-id='24'/>
+<connection from-id='1' to-id='22'/>
+<connection from-id='1' to-id='20'/>
+<connection from-id='1' to-id='18'/>
+<connection from-id='1' to-id='16'/>
+<connection from-id='1' to-id='14'/>
+<connection from-id='1' to-id='12'/>
+<connection from-id='1' to-id='10'/>
+<connection from-id='1' to-id='8'/>
+<connection from-id='1' to-id='6'/>
+<connection from-id='1' to-id='4'/>
+<connection from-id='1' to-id='2'/>
+</connection-list>
+        <concept-appearance-list>
+        </concept-appearance-list>
+        <linking-phrase-appearance-list>
+        </linking-phrase-appearance-list>
+        <connection-appearance-list>
+        </connection-appearance-list>
+        <style-sheet-list>
+        </style-sheet-list>
+        <extra-graphical-properties-list>
+        </extra-graphical-properties-list>
+</map>
+</cmap>

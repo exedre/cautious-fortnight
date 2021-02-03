@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cmap xmlns:dcterms="http://purl.org/dc/terms/" xmlns="http://cmap.ihmc.us/xml/cmap/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">m<res-meta>
+        <dc:title>nil</dc:title>
+         <dc:format>x-cmap/x-storable</dc:format>
+ </res-meta>
+<map>
+<!-- nodes -->
+<concept-list>
+<concept id="68" label=";;; org-cxlmap.el ends here"/>
+<concept id="67" label="(provide ’org-cxlmap)"/>
+<concept id="66" label="(defun org-cxlmap-export-message nil"/>
+<concept id="65" label="(defmacro org-cxlmap-make-edge-fn (name doc props &optional&#xa;style color other)"/>
+<concept id="64" label="(defmacro org-cxlmap-make-node-fn (name doc props &optional&#xa;shape color other)"/>
+<concept id="63" label="(defun org-cxlmap-write-current-tree (&optional promptp)"/>
+<concept id="62" label="(defun org-cxlmap-write-current-branch (&optional promptp)"/>
+<concept id="61" label="(defun org-cxlmap-write (&optional promptp)"/>
+<concept id="60" label="(defun org-cxlmap-default-filename (treenamep)"/>
+<concept id="59" label="(defun org-cxlmap-write-with-prompt nil"/>
+<concept id="58" label=";;;###autoload"/>
+<concept id="57" label="(defun org-cxlmap-write-named (name &optional debug linksp)"/>
+<concept id="56" label="(defun org-cxlmap-update-message (filename process event)"/>
+<concept id="55" label="(defun org-cxlmap-layout ()"/>
+<concept id="54" label="(defun org-cxlmap-make-cxl ()"/>
+<concept id="53" label="(defun org-cxlmap-make-cxl--links-appearance (nodes)"/>
+<concept id="52" label="(defun org-cxlmap-make-cxl--links (nodes)"/>
+<concept id="51" label="(defun org-cxlmap-make-cxl--node-appearance (nodes)"/>
+<concept id="50" label="(defun org-cxlmap-make-cxl--node (nodes)"/>
+<concept id="49" label="(defun org-cxlmap-bold (id text)"/>
+<concept id="48" label="(defun org-cxlmap--bold-count-cr (text pos)"/>
+<concept id="47" label="(defun match-strings-all (&optional string)"/>
+<concept id="46" label="(defun org-cxlmap-props-get (title)"/>
+<concept id="45" label="(defun org-cxlmap-make-cxl--edges (edges)"/>
+<concept id="44" label="(defun org-cxlmap-make-cxl--edges-appearance (edges)"/>
+<concept id="43" label="(defun org-cxlmap-text-fill (text fill)"/>
+<concept id="42" label="(defun org-cxlmap-translate-entities (text)"/>
+<concept id="41" label="(defun org-cxlmap-data ()"/>
+<concept id="40" label="(defun org-cxlmap-data-sub (this-title this-id parent)"/>
+<concept id="39" label="(defun org-cxlmap-id-get (title nodes)"/>
+<concept id="38" label="(defun org-cxlmap-first-headline (e)"/>
+<concept id="37" label="(defun org-cxlmap-narrow-to-heading-content (b)"/>
+<concept id="36" label="(defun org-cxlmap-get-property (prop el &optional inheritp)"/>
+<concept id="35" label="(defun org-cxlmap-cxl-node-props (el)"/>
+<concept id="34" label="(defun org-cxlmap-cxl-node-type (el)"/>
+<concept id="33" label="(defun org-cxlmap-cxl-node-name (el)"/>
+<concept id="32" label="(defun org-cxlmap-cxl-node-id (el)"/>
+<concept id="31" label="(defun org-cxlmap-edges-add (edge-a edge-b)"/>
+<concept id="30" label="(defun org-cxlmap-nodes-add (type id title &optional&#xa;composed)"/>
+<concept id="29" label="(defvar org-cxlmap-bold-strings (asoc-make)"/>
+<concept id="28" label="(defvar org-cxlmap-edges (make-hash-table :test ’equal)"/>
+<concept id="27" label="(defvar org-cxlmap-nodes (make-hash-table :test ’equal)"/>
+<concept id="26" label="(defvar org-cxlmap-edge-id 0"/>
+<concept id="25" label="(defvar org-cxlmap-node-id 0"/>
+<concept id="24" label="(defcustom org-cxlmap-fill-column 60"/>
+<concept id="23" label="(defcustom org-cxlmap-include-images t"/>
+<concept id="22" label="(defcustom org-cxlmap-include-text t"/>
+<concept id="21" label="(defcustom org-cxlmap-tag-colors nil"/>
+<concept id="20" label="(defcustom org-cxlmap-reserved-colors nil"/>
+<concept id="19" label="(defcustom org-cxlmap-edge-format-default &quot;&quot;"/>
+<concept id="18" label="(defcustom org-cxlmap-edge-formats nil"/>
+<concept id="17" label="(defcustom org-cxlmap-node-formats nil"/>
+<concept id="15" label="&quot; . &quot;&quot;)"/>
+
+<concept id="14" label="(defcustom org-cxlmap-default-node-attribs ’((&quot;@&quot; .&#xa;(&quot;font-style=\&quot;bold\&quot;&quot;"/>
+<concept id="13" label="(defcustom org-cxlmap-unflatten-command &quot;unflatten -l3&quot;"/>
+<concept id="12" label="(defgroup org-cxlmap nil"/>
+<concept id="11" label="(defconst org-cxlmap-version &quot;0.4&quot;)"/>
+<concept id="10" label="(require ’subr-x)"/>
+<concept id="9" label="(require ’ht)"/>
+<concept id="8" label="(require ’org)"/>
+<concept id="7" label="(require ’dash)"/>
+<concept id="6" label="(require ’asoc)"/>
+<concept id="5" label=";;; Code:"/>
+<concept id="4" label=";;; Customizable Options:"/>
+<concept id="3" label=";;; Commands:"/>
+<concept id="2" label=";;; Commentary:"/>
+<concept id="1" label=";;; org-cxlmap --- Creates a directed graph from org-mode&#xa;files -- lexical-binding: t --"/>
+</concept-list>
+<!-- nodes -->
+<concept-appearance-list>
+<concept-appearance id="68" border-color="0,0,0,255"/>
+<concept-appearance id="67" border-color="0,0,0,255"/>
+<concept-appearance id="66" border-color="0,0,0,255"/>
+<concept-appearance id="65" border-color="0,0,0,255"/>
+<concept-appearance id="64" border-color="0,0,0,255"/>
+<concept-appearance id="63" border-color="0,0,0,255"/>
+<concept-appearance id="62" border-color="0,0,0,255"/>
+<concept-appearance id="61" border-color="0,0,0,255"/>
+<concept-appearance id="60" border-color="0,0,0,255"/>
+<concept-appearance id="59" border-color="0,0,0,255"/>
+<concept-appearance id="58" border-color="0,0,0,255"/>
+<concept-appearance id="57" border-color="0,0,0,255"/>
+<concept-appearance id="56" border-color="0,0,0,255"/>
+<concept-appearance id="55" border-color="0,0,0,255"/>
+<concept-appearance id="54" border-color="0,0,0,255"/>
+<concept-appearance id="53" border-color="0,0,0,255"/>
+<concept-appearance id="52" border-color="0,0,0,255"/>
+<concept-appearance id="51" border-color="0,0,0,255"/>
+<concept-appearance id="50" border-color="0,0,0,255"/>
+<concept-appearance id="49" border-color="0,0,0,255"/>
+<concept-appearance id="48" border-color="0,0,0,255"/>
+<concept-appearance id="47" border-color="0,0,0,255"/>
+<concept-appearance id="46" border-color="0,0,0,255"/>
+<concept-appearance id="45" border-color="0,0,0,255"/>
+<concept-appearance id="44" border-color="0,0,0,255"/>
+<concept-appearance id="43" border-color="0,0,0,255"/>
+<concept-appearance id="42" border-color="0,0,0,255"/>
+<concept-appearance id="41" border-color="0,0,0,255"/>
+<concept-appearance id="40" border-color="0,0,0,255"/>
+<concept-appearance id="39" border-color="0,0,0,255"/>
+<concept-appearance id="38" border-color="0,0,0,255"/>
+<concept-appearance id="37" border-color="0,0,0,255"/>
+<concept-appearance id="36" border-color="0,0,0,255"/>
+<concept-appearance id="35" border-color="0,0,0,255"/>
+<concept-appearance id="34" border-color="0,0,0,255"/>
+<concept-appearance id="33" border-color="0,0,0,255"/>
+<concept-appearance id="32" border-color="0,0,0,255"/>
+<concept-appearance id="31" border-color="0,0,0,255"/>
+<concept-appearance id="30" border-color="0,0,0,255"/>
+<concept-appearance id="29" border-color="0,0,0,255"/>
+<concept-appearance id="28" border-color="0,0,0,255"/>
+<concept-appearance id="27" border-color="0,0,0,255"/>
+<concept-appearance id="26" border-color="0,0,0,255"/>
+<concept-appearance id="25" border-color="0,0,0,255"/>
+<concept-appearance id="24" border-color="0,0,0,255"/>
+<concept-appearance id="23" border-color="0,0,0,255"/>
+<concept-appearance id="22" border-color="0,0,0,255"/>
+<concept-appearance id="21" border-color="0,0,0,255"/>
+<concept-appearance id="20" border-color="0,0,0,255"/>
+<concept-appearance id="19" border-color="0,0,0,255"/>
+<concept-appearance id="18" border-color="0,0,0,255"/>
+<concept-appearance id="17" border-color="0,0,0,255"/>
+<concept-appearance id="15" border-color="0,0,0,255"/>
+
+<concept-appearance id="14" border-color="0,0,0,255"/>
+<concept-appearance id="13" border-color="0,0,0,255"/>
+<concept-appearance id="12" border-color="0,0,0,255"/>
+<concept-appearance id="11" border-color="0,0,0,255"/>
+<concept-appearance id="10" border-color="0,0,0,255"/>
+<concept-appearance id="9" border-color="0,0,0,255"/>
+<concept-appearance id="8" border-color="0,0,0,255"/>
+<concept-appearance id="7" border-color="0,0,0,255"/>
+<concept-appearance id="6" border-color="0,0,0,255"/>
+<concept-appearance id="5" border-color="0,0,0,255"/>
+<concept-appearance id="4" border-color="0,0,0,255"/>
+<concept-appearance id="3" border-color="0,0,0,255"/>
+<concept-appearance id="2" border-color="0,0,0,255"/>
+<concept-appearance id="1" border-color="0,0,0,255">
+	<localized-style begin="65" end="87" font-style="bold"/>
+</concept-appearance>
+</concept-appearance-list>
+<!-- Linking Phrases -->
+<linking-phrase-list>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<linking-phrase id="16" label="(defcustom org-cxlmap-default-node-entities'((&quot;^.+" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</linking-phrase-list>
+<!-- Linking Phrases -->
+<linking-phrase-appearance-list>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<linking-phrase-appearance id="16" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</linking-phrase-appearance-list>
+<!-- EDGES -->
+<connection-list>
+<connection id='EF0005T0067' from-id='5' to-id='67'/>
+<connection id='EF0005T0066' from-id='5' to-id='66'/>
+<connection id='EF0005T0065' from-id='5' to-id='65'/>
+<connection id='EF0005T0064' from-id='5' to-id='64'/>
+<connection id='EF0005T0063' from-id='5' to-id='63'/>
+<connection id='EF0005T0062' from-id='5' to-id='62'/>
+<connection id='EF0005T0061' from-id='5' to-id='61'/>
+<connection id='EF0005T0060' from-id='5' to-id='60'/>
+<connection id='EF0005T0059' from-id='5' to-id='59'/>
+<connection id='EF0005T0058' from-id='5' to-id='58'/>
+<connection id='EF0005T0057' from-id='5' to-id='57'/>
+<connection id='EF0005T0056' from-id='5' to-id='56'/>
+<connection id='EF0005T0055' from-id='5' to-id='55'/>
+<connection id='EF0005T0054' from-id='5' to-id='54'/>
+<connection id='EF0005T0053' from-id='5' to-id='53'/>
+<connection id='EF0005T0052' from-id='5' to-id='52'/>
+<connection id='EF0005T0051' from-id='5' to-id='51'/>
+<connection id='EF0005T0050' from-id='5' to-id='50'/>
+<connection id='EF0005T0049' from-id='5' to-id='49'/>
+<connection id='EF0005T0048' from-id='5' to-id='48'/>
+<connection id='EF0005T0047' from-id='5' to-id='47'/>
+<connection id='EF0005T0046' from-id='5' to-id='46'/>
+<connection id='EF0005T0045' from-id='5' to-id='45'/>
+<connection id='EF0005T0044' from-id='5' to-id='44'/>
+<connection id='EF0005T0043' from-id='5' to-id='43'/>
+<connection id='EF0005T0042' from-id='5' to-id='42'/>
+<connection id='EF0005T0041' from-id='5' to-id='41'/>
+<connection id='EF0005T0040' from-id='5' to-id='40'/>
+<connection id='EF0005T0039' from-id='5' to-id='39'/>
+<connection id='EF0005T0038' from-id='5' to-id='38'/>
+<connection id='EF0005T0037' from-id='5' to-id='37'/>
+<connection id='EF0005T0036' from-id='5' to-id='36'/>
+<connection id='EF0005T0035' from-id='5' to-id='35'/>
+<connection id='EF0005T0034' from-id='5' to-id='34'/>
+<connection id='EF0005T0033' from-id='5' to-id='33'/>
+<connection id='EF0005T0032' from-id='5' to-id='32'/>
+<connection id='EF0005T0031' from-id='5' to-id='31'/>
+<connection id='EF0005T0030' from-id='5' to-id='30'/>
+<connection id='EF0005T0029' from-id='5' to-id='29'/>
+<connection id='EF0005T0028' from-id='5' to-id='28'/>
+<connection id='EF0005T0027' from-id='5' to-id='27'/>
+<connection id='EF0005T0026' from-id='5' to-id='26'/>
+<connection id='EF0005T0025' from-id='5' to-id='25'/>
+<connection id='EF0005T0024' from-id='5' to-id='24'/>
+<connection id='EF0005T0023' from-id='5' to-id='23'/>
+<connection id='EF0005T0022' from-id='5' to-id='22'/>
+<connection id='EF0005T0021' from-id='5' to-id='21'/>
+<connection id='EF0005T0020' from-id='5' to-id='20'/>
+<connection id='EF0005T0019' from-id='5' to-id='19'/>
+<connection id='EF0005T0018' from-id='5' to-id='18'/>
+<connection id='EF0005T0017' from-id='5' to-id='17'/>
+<connection id='EF0016T0015' from-id='16' to-id='15'/>
+<connection id='EF0005T0016' from-id='5' to-id='16'/>
+<connection id='EF0005T0014' from-id='5' to-id='14'/>
+<connection id='EF0005T0013' from-id='5' to-id='13'/>
+<connection id='EF0005T0012' from-id='5' to-id='12'/>
+<connection id='EF0005T0011' from-id='5' to-id='11'/>
+<connection id='EF0005T0010' from-id='5' to-id='10'/>
+<connection id='EF0005T0009' from-id='5' to-id='9'/>
+<connection id='EF0005T0008' from-id='5' to-id='8'/>
+<connection id='EF0005T0007' from-id='5' to-id='7'/>
+<connection id='EF0005T0006' from-id='5' to-id='6'/>
+</connection-list>
+<!-- EDGES -->
+<connection-appearance-list>
+<connection-appearance id='EF0005T0067' from-pos='right' to-pos='left'/>
+<connection-appearance id='EF0005T0066' from-pos='right' to-pos='left'/>
+<connection-appearance id='EF0005T0065' from-pos='right' to-pos='left'/>
+<connection-appearance id='EF0005T0064' from-pos='right' to-pos='left'/>
+<connection-appearance id='EF0005T0063' from-pos='right' to-pos='left'/>
+<connection-appearance id='EF0005T0062' from-pos='right' to-pos='left'/>
+<connection-appearance id='EF0005T0061' from-pos='right' to-pos='left'/>
+<connection-appearance id='EF0005T0060' from-pos='right' to-pos='left'/>
+<connection-appearance id='EF0005T0059' from-pos='right' to-pos='left'/>
+<connection-appearance id='EF0005T0058' from-pos='right' to-pos='left'/>
+<connection-appearance id='EF0005T0057' from-pos='right' to-pos='left'/>
+<connection-appearance id='EF0005T0056' from-pos='right' to-pos='left'/>
+<connection-appearance id='EF0005T0055' from-pos='right' to-pos='left'/>
+<connection-appearance id='EF0005T0054' from-pos='right' to-pos='left'/>
+<connection-appearance id='EF0005T0053' from-pos='right' to-pos='left'/>
+<connection-appearance id='EF0005T0052' from-pos='right' to-pos='left'/>
+<connection-appearance id='EF0005T0051' from-pos='right' to-pos='left'/>
+<connection-appearance id='EF0005T0050' from-pos='right' to-pos='left'/>
+<connection-appearance id='EF0005T0049' from-pos='right' to-pos='left'/>
+<connection-appearance id='EF0005T0048' from-pos='right' to-pos='left'/>
+<connection-appearance id='EF0005T0047' from-pos='right' to-pos='left'/>
+<connection-appearance id='EF0005T0046' from-pos='right' to-pos='left'/>
+<connection-appearance id='EF0005T0045' from-pos='right' to-pos='left'/>
+<connection-appearance id='EF0005T0044' from-pos='right' to-pos='left'/>
+<connection-appearance id='EF0005T0043' from-pos='right' to-pos='left'/>
+<connection-appearance id='EF0005T0042' from-pos='right' to-pos='left'/>
+<connection-appearance id='EF0005T0041' from-pos='right' to-pos='left'/>
+<connection-appearance id='EF0005T0040' from-pos='right' to-pos='left'/>
+<connection-appearance id='EF0005T0039' from-pos='right' to-pos='left'/>
+<connection-appearance id='EF0005T0038' from-pos='right' to-pos='left'/>
+<connection-appearance id='EF0005T0037' from-pos='right' to-pos='left'/>
+<connection-appearance id='EF0005T0036' from-pos='right' to-pos='left'/>
+<connection-appearance id='EF0005T0035' from-pos='right' to-pos='left'/>
+<connection-appearance id='EF0005T0034' from-pos='right' to-pos='left'/>
+<connection-appearance id='EF0005T0033' from-pos='right' to-pos='left'/>
+<connection-appearance id='EF0005T0032' from-pos='right' to-pos='left'/>
+<connection-appearance id='EF0005T0031' from-pos='right' to-pos='left'/>
+<connection-appearance id='EF0005T0030' from-pos='right' to-pos='left'/>
+<connection-appearance id='EF0005T0029' from-pos='right' to-pos='left'/>
+<connection-appearance id='EF0005T0028' from-pos='right' to-pos='left'/>
+<connection-appearance id='EF0005T0027' from-pos='right' to-pos='left'/>
+<connection-appearance id='EF0005T0026' from-pos='right' to-pos='left'/>
+<connection-appearance id='EF0005T0025' from-pos='right' to-pos='left'/>
+<connection-appearance id='EF0005T0024' from-pos='right' to-pos='left'/>
+<connection-appearance id='EF0005T0023' from-pos='right' to-pos='left'/>
+<connection-appearance id='EF0005T0022' from-pos='right' to-pos='left'/>
+<connection-appearance id='EF0005T0021' from-pos='right' to-pos='left'/>
+<connection-appearance id='EF0005T0020' from-pos='right' to-pos='left'/>
+<connection-appearance id='EF0005T0019' from-pos='right' to-pos='left'/>
+<connection-appearance id='EF0005T0018' from-pos='right' to-pos='left'/>
+<connection-appearance id='EF0005T0017' from-pos='right' to-pos='left'/>
+<connection-appearance id='EF0016T0015' from-pos='right' to-pos='left'/>
+<connection-appearance id='EF0005T0016' from-pos='right' to-pos='left'/>
+<connection-appearance id='EF0005T0014' from-pos='right' to-pos='left'/>
+<connection-appearance id='EF0005T0013' from-pos='right' to-pos='left'/>
+<connection-appearance id='EF0005T0012' from-pos='right' to-pos='left'/>
+<connection-appearance id='EF0005T0011' from-pos='right' to-pos='left'/>
+<connection-appearance id='EF0005T0010' from-pos='right' to-pos='left'/>
+<connection-appearance id='EF0005T0009' from-pos='right' to-pos='left'/>
+<connection-appearance id='EF0005T0008' from-pos='right' to-pos='left'/>
+<connection-appearance id='EF0005T0007' from-pos='right' to-pos='left'/>
+<connection-appearance id='EF0005T0006' from-pos='right' to-pos='left'/>
+</connection-appearance-list>
+
+        <linking-phrase-appearance-list>
+        </linking-phrase-appearance-list>
+        <connection-appearance-list>
+        </connection-appearance-list>
+        <style-sheet-list>
+        </style-sheet-list>
+        <extra-graphical-properties-list>
+        </extra-graphical-properties-list>
+</map>
+</cmap>
