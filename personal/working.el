@@ -36,7 +36,7 @@ For a list of value attributes, see here: https://graphviz.gitlab.io/_pages/doc/
               (phrase (match-string 2 title)))
           (list 'node (md5 label)
                 label phrase (nth 1 slink) (nth 1 elink)))
-      (list 'node (md5 title) title title (nth 1 slink)(car elink)))))
+      (list 'node (md5 id) title title (nth 1 slink)(car elink)))))
 
 (defun org-emind--ident-link (title pos id)
   (when title
@@ -312,7 +312,9 @@ If LINKSP is non-nil include graph edges for org links."
               (org-collect-keywords org-emind-ref-meta-list))))
     (with-temp-file (concat name ".cxl")
       (insert cxl)
-      (insert "\n"))))
+      (insert "\n")))
+  (message (format "File %s ready." (concat name ".cxl")))
+  )
 
 ;;;###autoload
 (defun org-emind-write-with-prompt nil
