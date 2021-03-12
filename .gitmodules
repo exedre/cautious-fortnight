@@ -1,0 +1,3 @@
+[submodule "personal/esearch-interfaces"]
+	path = personal/esearch-interfaces
+	url = https://github.com/exedre/esearch-interfaces.git
