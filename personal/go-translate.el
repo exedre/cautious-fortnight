@@ -1,8 +1,10 @@
 (require 'google-translate)
-(require 'google-translate-default-ui)
-; (require 'google-translate-smooth-ui)
+;(require 'google-translate-default-ui)
+(require 'google-translate-smooth-ui)
 ; (global-set-key "\C-ct" 'google-translate-smooth-translate)
-(global-set-key "\C-ct" 'google-translate-at-point)
+(global-set-key "\C-c \C-t 5" 'google-translate-at-point-reverse)
+(global-set-key "\C-c \C-t 6" 'google-translate-at-point)
+(global-set-key "\C-c \C-t 7" 'google-translate-at-point)
 (global-set-key "\C-cT" 'google-translate-query-translate)
 
 

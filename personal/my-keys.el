@@ -31,8 +31,54 @@
 (global-set-key (kbd "<XF86Back>")  'select-previous-window)
 
 
-(global-set-key (kbd "C-ù") 'select-last-nbor-window)
-(global-set-key (kbd "M-ù") 'select-last-nbor-window)
-(global-set-key (kbd "M-\\") 'ns-next-frame)
-(global-set-key (kbd "s-ò") (lambda () (interactive) (insert "@")) )
-(global-set-key (kbd "s-à") (lambda () (interactive) (insert "#")) )
+(global-set-key (kbd "C-§") 'select-last-nbor-window)
+(global-set-key (kbd "C-`") 'other-frame)
+
+(global-set-key (kbd "M-~") 'select-last-nbor-window)
+;(global-set-key (kbd "M-\\") 'ns-next-frame)
+;(global-set-key (kbd "s-ò") (lambda () (interactive) (insert "@")) )
+;(global-set-key (kbd "s-à") (lambda () (interactive) (insert "#")) )
+
+(global-set-key (kbd "C-/") 'undo-tree-undo)
+(global-set-key (kbd "C-<backspace>") 'sp-backward-kill-word)
+
+(global-set-key (kbd "C-/") 'undo-tree-undo)
+
+
+
+; https://eastmanreference.com/complete-list-of-applescript-key-codes
+(global-set-key (kbd "H-<left>")
+                '(lambda ()
+                   (interactive)
+                   (ns-do-applescript
+                    "set old to (path to frontmost application as text)
+		     activate application \"VLC\"
+                     tell application \"System Events\" to key code 123 using {option down, command down}
+		     activate application old                                                                        ")))
+
+
+(global-set-key (kbd "C-<escape>")
+                '(lambda ()
+                   (interactive)
+                   (ns-do-applescript
+                    "tell application \"VLC\" to play")))
+
+(global-set-key (kbd "C-<help>")
+                '(lambda ()
+                   (interactive)
+                   (ns-do-applescript
+                    "tell application \"VLC\" to play")))
+
+
+;; ORG mode keymaps
+
+
+(define-key org-mode-map (kbd "C-<return>") 'org-meta-return)
+(define-key org-mode-map (kbd "C-<left>") 'left-word)
+(define-key org-mode-map (kbd "C-<right>") 'right-word)
+
+(define-key org-mode-map (kbd "C-S-<right>") 'org-metaright)
+(define-key org-mode-map (kbd "C-S-<left>") 'org-metaleft)
+(define-key org-mode-map (kbd "C-H-<right>") 'org-shiftmetaright)
+(define-key org-mode-map (kbd "C-H-<left>") 'org-shiftmetaleft)
+(define-key org-mode-map (kbd "M-<return>") 'org-insert-heading-respect-content)

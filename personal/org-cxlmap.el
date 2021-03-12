@@ -173,7 +173,7 @@ For a list of value attributes, see here: https://graphviz.gitlab.io/_pages/doc/
 
 ; (assoc "L" org-cxlmap-default-node-attribs 'string-equal)
 
-(defcustom org-cxlmap-default-node-entities'(("^.+>>" . "")
+(defcustom org-cxlmap-default-node-entities'(("^.+\\(>>\\|||\\)" . "")
                                              (">" . "&gt;")
                                              ("<" . "&lt;")
                                              (" *§ *" . "&#xa;")
@@ -255,6 +255,21 @@ defined in `org-cxlmap-node-formats'."
 
 (defcustom org-cxlmap-include-images t
   "A boolean indicating whether our not to include paragraph text in body of nodes.
+   default = t"
+  :type 'boolean
+  :group 'org-cxlmap
+  )
+
+
+(defcustom org-cxlmap-do-fill t
+  "A boolean indicating whether our not to fill paragraph text in body of nodes.
+   default = t"
+  :type 'boolean
+  :group 'org-cxlmap
+  )
+
+(defcustom org-cxlmap-do-index nil
+  "A boolean indicating whether our not to fill paragraph text in body of nodes.
    default = t"
   :type 'boolean
   :group 'org-cxlmap
@@ -375,7 +390,6 @@ If there is a column summary value for the property that has recently be calcula
 
 
 
-
 (defun org-cxlmap-data-sub (this-title this-id parent)
   (let* ((pparent-title (org-element-property :title parent))
          (pparent-id (org-cxlmap-id-get pparent-title org-cxlmap-nodes))
@@ -421,19 +435,21 @@ If there is a column summary value for the property that has recently be calcula
             org-cxlmap-default-node-entities))))
 
 (defun org-cxlmap-text-fill (text fill)
-  "Fill text to given column"
-  (let ((newtext "")
-        (last 0)
-        (words (split-string (replace-regexp-in-string " *§ *" " " text) " "))
-        (col (or (string-match "§" text) fill)))
-    (mapcar #'(lambda (word)
-                (progn
-                  (if (> (+ (- (length newtext) last) (length word)) col )
-                      (and (setq newtext (concat newtext " § "))
-                           (setq last (length newtext))))
-              (setq newtext (concat newtext " "  word))))
-           words)
-    (replace-regexp-in-string " +" " "newtext)))
+  "Fill text to given column if `org-cxlmap-do-fill'"
+  (if org-cxlmap-do-fill
+      (let ((newtext "")
+            (last 0)
+            (words (split-string (replace-regexp-in-string " *§ *" " " text) " "))
+            (col (or (string-match "§" text) fill)))
+        (mapcar #'(lambda (word)
+                    (progn
+                      (if (> (+ (- (length newtext) last) (length word)) col )
+                          (and (setq newtext (concat newtext " § "))
+                               (setq last (length newtext))))
+                      (setq newtext (concat newtext " "  word))))
+                words)
+        (replace-regexp-in-string " +" " "newtext))
+    text))
 
 ;(org-cxlmap-text-fill "Una parte di questa realtà, la “realtà sociale”, è il prodotto dell’azione e dell’interpretazione delle persone. Le azioni delle persone creano la realtà sociale e, nello stesso tempo, la riproducono costantemente (talvolta, la trasformano)" 60)
 
@@ -504,15 +520,22 @@ If there is a column summary value for the property that has recently be calcula
    "<!-- nodes -->\n<concept-list>\n"
    (mapconcat
     #'(lambda (x)
-        (let ((id (org-cxlmap-cxl-node-id x))
+        (let* ((id (org-cxlmap-cxl-node-id x))
               (type (org-cxlmap-cxl-node-type x))
-              (title (org-cxlmap-cxl-node-name x)))
-          (if (string-equal type "N")
-              (message (format "<concept id=\"%d\" label=\"%s\"/>" id
-                               (org-cxlmap-bold
-                                id
-                                (org-cxlmap-translate-entities
-                                 (org-cxlmap-text-fill title org-cxlmap-fill-column))))))))
+              (title (org-cxlmap-cxl-node-name x))
+              (idx   (if org-cxlmap-do-index
+                         (format "parent-id=\"X%d\" group-type=\"stack\" group-order=\"1\"" id)
+                         "")))
+          (when (string-equal type "N")
+            (concat
+             (if org-cxlmap-do-index
+                 (format "<concept id=\"X%d\" label=\"\"/>" id))
+             (format "<concept id=\"%d\" label=\"%s\" %s />" id
+                     (org-cxlmap-bold
+                      id
+                      (org-cxlmap-translate-entities
+                       (org-cxlmap-text-fill title org-cxlmap-fill-column)))
+                     idx)))))
     nodes "\n")
    "\n</concept-list>\n"))
 
@@ -527,6 +550,8 @@ If there is a column summary value for the property that has recently be calcula
               (title (org-cxlmap-cxl-node-name x)))
           (if (string-equal type "N")
               (concat
+               (if org-cxlmap-do-index
+                   (format "<concept-appearance id=\"X%d\" expanded=\"true\"/>" id))
                (format "<concept-appearance id=\"%d\" %s" id
                        (org-cxlmap-props-get
                         (org-cxlmap-cxl-node-props x)))
@@ -536,7 +561,7 @@ If there is a column summary value for the property that has recently be calcula
                             'identity
                             (asoc--map
                                 (when (eq key id)
-                                  (format "\t<localized-style begin=\"%d\" end=\"%d\" font-style=\"bold\"/>"
+                                  (format "\t<localized-style begin=\"%d\" end=\"%d\" font-color=\"255,0,0,255\" font-style=\"bold\"/>"
                                           (car value) (cadr value)))
                               org-cxlmap-bold-strings) "\n")
                            "\n</concept-appearance>")
@@ -688,6 +713,23 @@ If TREENAMEP is non-nil include in the filename the name of the top level header
 	(replace-regexp-in-string
          " +" "_"
          (nth 4 (org-heading-components)))))))
+
+;;;###autoload
+(defun org-cxlmap-write-index (&optional promptp)
+  "Create a digraph based on all org trees in the current buffer.
+The digraph will be named the same name as the current buffer.
+To customize, see the org-cxlmap group.
+If called with prefix arg (or PROMPTP is non-nil), then call `org-cxlmap-write-with-prompt'."
+  (interactive "P")
+  (let ((fill-v org-cxlmap-do-fill))
+    (setq org-cxlmap-do-fill nil)
+    (setq org-cxlmap-do-index t)
+    (if promptp
+        (org-cxlmap-write-with-prompt)
+      (org-cxlmap-write-named
+       (org-cxlmap-default-filename nil)))
+    (setq org-cxlmap-do-fill fill-v)
+    (setq org-cxlmap-do-fill nil)))
 
 ;;;###autoload
 (defun org-cxlmap-write (&optional promptp)
